@@ -353,8 +353,6 @@ This project is created for educational purposes as part of the Final Project fo
 
 - Group: [SE-2431]
 - Email: [bakitzh082006@gmail.com]
-- GitHub: [[Your GitHub Profile](https://github.com/dzhangazy)]
+- GitHub: [[My GitHub Profile](https://github.com/dzhangazy)]
 
----
 
-**Good luck with your project defense! 🎉**
