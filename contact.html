@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us - LuxStay</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .page-hero {
+        background: var(--primary-gradient);
+        padding: 8rem 0 4rem;
+        color: white;
+        text-align: center;
+      }
+
+      .contact-container {
+        min-height: calc(100vh - 500px);
+        padding: 3rem 0;
+      }
+
+      .contact-card {
+        background: var(--bg-card);
+        padding: 2.5rem;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-md);
+        height: 100%;
+      }
+
+      .contact-card h4 {
+        color: var(--text-dark);
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+      }
+
+      .contact-info-item {
+        margin-bottom: 2rem;
+      }
+
+      .contact-info-item h6 {
+        color: var(--text-dark);
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+      }
+
+      .contact-info-item i {
+        margin-right: 0.75rem;
+        width: 20px;
+      }
+
+      .contact-info-item a {
+        color: var(--text-light);
+        text-decoration: none;
+        transition: var(--transition);
+      }
+
+      .contact-info-item a:hover {
+        color: var(--primary-color);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <i class="fas fa-gem"></i> LuxStay
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto align-items-center">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="browse.html">Hotels</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="bookings.html">My Bookings</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="favorites.html">
+                <i class="fas fa-heart"></i> Favorites
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="contact.html">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link position-relative" href="cart.html">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="cartCount">0</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <button class="theme-btn" onclick="toggleTheme()">
+                <i class="fas fa-moon" id="themeIcon"></i>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <div class="page-hero">
+      <div class="container">
+        <h1 style="font-size: 3rem; font-weight: 700; margin-bottom: 1rem">
+          <i class="fas fa-envelope me-3"></i>Get In Touch
+        </h1>
+        <p style="font-size: 1.2rem; opacity: 0.9">
+          We'd love to hear from you! Send us a message
+        </p>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="contact-container">
+      <div class="container">
+        <div class="row g-4">
+          <!-- Contact Form -->
+          <div class="col-lg-7">
+            <div class="contact-card">
+              <h4><i class="fas fa-paper-plane me-2"></i>Send us a Message</h4>
+              <form id="contactForm" onsubmit="handleContactForm(event)">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label fw-semibold">Full Name *</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="contactName"
+                      required
+                      minlength="2"
+                      placeholder="John Doe"
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label fw-semibold"
+                      >Email Address *</label
+                    >
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="contactEmail"
+                      required
+                      placeholder="john@example.com"
+                    />
+                  </div>
+                </div>
+
+                <div class="row g-3 mt-2">
+                  <div class="col-md-6">
+                    <label class="form-label fw-semibold">Phone Number</label>
+                    <input
+                      type="tel"
+                      class="form-control"
+                      id="contactPhone"
+                      placeholder="+7 (XXX) XXX-XXXX"
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label fw-semibold">Subject *</label>
+                    <select class="form-select" id="contactSubject" required>
+                      <option value="">Select a subject</option>
+                      <option value="booking">Booking Inquiry</option>
+                      <option value="support">Customer Support</option>
+                      <option value="feedback">Feedback</option>
+                      <option value="partnership">Partnership</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="mt-3">
+                  <label class="form-label fw-semibold">Message *</label>
+                  <textarea
+                    class="form-control"
+                    id="contactMessage"
+                    rows="6"
+                    required
+                    minlength="10"
+                    placeholder="Tell us how we can help you..."
+                  ></textarea>
+                </div>
+
+                <div class="mt-3 form-check">
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    id="contactConsent"
+                    required
+                  />
+                  <label class="form-check-label" for="contactConsent">
+                    I agree to the privacy policy and terms of service *
+                  </label>
+                </div>
+
+                <button type="submit" class="btn-primary-custom w-100 mt-4">
+                  <i class="fas fa-paper-plane me-2"></i> Send Message
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Contact Information -->
+          <div class="col-lg-5">
+            <div class="contact-card mb-4">
+              <h4>
+                <i class="fas fa-info-circle me-2"></i>Contact Information
+              </h4>
+
+              <div class="contact-info-item">
+                <h6>
+                  <i class="fas fa-map-marker-alt text-danger"></i>Address
+                </h6>
+                <p class="text-muted mb-0">
+                  Mangilik El Avenue, C1<br />Astana, Kazakhstan<br />010000
+                </p>
+              </div>
+
+              <div class="contact-info-item">
+                <h6><i class="fas fa-phone text-primary"></i>Phone</h6>
+                <p class="mb-1">
+                  <a href="tel:+71234567890">+7 (123) 456-7890</a>
+                </p>
+                <small class="text-muted">Mon-Fri: 9:00 AM - 6:00 PM</small>
+              </div>
+
+              <div class="contact-info-item">
+                <h6><i class="fas fa-envelope text-warning"></i>Email</h6>
+                <p class="mb-1">
+                  <a href="mailto:info@luxstay.com">info@luxstay.com</a>
+                </p>
+                <p class="mb-0">
+                  <a href="mailto:support@luxstay.com">support@luxstay.com</a>
+                </p>
+              </div>
+
+              <div class="contact-info-item">
+                <h6><i class="fas fa-clock text-success"></i>Business Hours</h6>
+                <p class="text-muted mb-0">
+                  Monday - Friday: 9:00 AM - 6:00 PM<br />
+                  Saturday: 10:00 AM - 4:00 PM<br />
+                  Sunday: Closed
+                </p>
+              </div>
+
+              <div class="contact-info-item">
+                <h6><i class="fas fa-share-alt text-info"></i>Follow Us</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md-4">
+            <h5 class="footer-title"><i class="fas fa-gem"></i> LuxStay</h5>
+            <p>
+              Your gateway to luxury accommodations worldwide. Experience the
+              finest hotels at the best prices.
+            </p>
+            <div class="social-links">
+              <a href="https://t.me/dzhangazy"
+                ><i class="fab fa-telegram"></i
+              ></a>
+              <a href="https://www.instagram.com/dbktzhvn/"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="https://github.com/dzhangazy"
+                ><i class="fab fa-github"></i
+              ></a>
+              <a href="https://linkedin.com/in/bakytzhan-jangazy-50b337372"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <h6 class="footer-subtitle">Quick Links</h6>
+            <ul class="footer-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="browse.html">Hotels</a></li>
+              <li><a href="bookings.html">My Bookings</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h6 class="footer-subtitle">Support</h6>
+            <ul class="footer-links">
+              <li><a href="https://www.ihg.com/content/us/en/customer-care/main">Help Center</a></li>
+              <li><a href="https://www.marriott.com/about/terms-of-use.mi">Terms of Service</a></li>
+              <li><a href="https://www.marriott.com/about/privacy.mi?adobe_mc=MCMID%3D66712657228795457689090308981152108373%7CMCORGID%3D664516D751E565010A490D4C%2540AdobeOrg%7CTS%3D1762853635">Privacy Policy</a></li>
+              <li><a href="https://cityloungehotel.com/en/cancellation-policy">Cancellation Policy</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h6 class="footer-subtitle">Contact Info</h6>
+            <ul class="footer-contact">
+              <li><i class="fas fa-envelope"></i> info@luxstay.com</li>
+              <li><i class="fas fa-phone"></i> +7 (123) 456-7890</li>
+              <li><i class="fas fa-map-marker-alt"></i> Astana, Kazakhstan</li>
+            </ul>
+          </div>
+        </div>
+        <hr class="footer-divider" />
+        <div class="footer-bottom">
+          <p>
+            &copy; 2024 LuxStay. All rights reserved. | Final Project - Astana
+            IT University
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="data.js"></script>
+    <script src="storage.js"></script>
+    <script src="theme.js"></script>
+    <script src="main.js"></script>
+    <script>
+      // Handle contact form submission
+      function handleContactForm(event) {
+        event.preventDefault();
+
+        const name = document.getElementById("contactName").value;
+        const email = document.getElementById("contactEmail").value;
+        const phone = document.getElementById("contactPhone").value;
+        const subject = document.getElementById("contactSubject").value;
+        const message = document.getElementById("contactMessage").value;
+
+        // Validate email
+        if (!validateEmail(email)) {
+          showToast("Please enter a valid email address", "error");
+          return;
+        }
+
+        // Validate message length
+        if (message.length < 10) {
+          showToast(
+            "Please enter a message with at least 10 characters",
+            "error"
+          );
+          return;
+        }
+
+        // Validate phone if provided
+        if (phone && !validatePhone(phone)) {
+          showToast("Please enter a valid phone number", "error");
+          return;
+        }
+
+        showToast(
+          `Thank you for contacting us, ${name}! We'll respond to ${email} soon.`,
+          "success"
+        );
+
+        // Reset form
+        document.getElementById("contactForm").reset();
+
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    </script>
+  </body>
+</html>

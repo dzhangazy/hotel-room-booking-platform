@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Browse Hotels - LuxStay</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .page-hero {
+        background: var(--primary-gradient);
+        padding: 8rem 0 4rem;
+        color: white;
+        text-align: center;
+      }
+
+      .filter-card {
+        background: var(--bg-card);
+        padding: 2rem;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-md);
+        margin-bottom: 2rem;
+      }
+
+      .filter-card h5 {
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: var(--text-dark);
+      }
+
+      .filter-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .filter-group label {
+        font-weight: 600;
+        color: var(--text-dark);
+        margin-bottom: 0.5rem;
+        display: block;
+      }
+
+      .filter-group .form-control,
+      .filter-group .form-select {
+        border: 2px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 0.75rem;
+      }
+
+      .results-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+      }
+
+      .results-count {
+        font-size: 1.1rem;
+        color: var(--text-light);
+      }
+
+      .results-count strong {
+        color: var(--primary-color);
+        font-size: 1.3rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <i class="fas fa-gem"></i> LuxStay
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto align-items-center">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="browse.html">Hotels</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="bookings.html">My Bookings</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="favorites.html">
+                <i class="fas fa-heart"></i> Favorites
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link position-relative" href="cart.html">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="cartCount">0</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <button class="theme-btn" onclick="toggleTheme()">
+                <i class="fas fa-moon" id="themeIcon"></i>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <div class="page-hero">
+      <div class="container">
+        <h1 style="font-size: 3rem; font-weight: 700; margin-bottom: 1rem">
+          Explore Our Hotels
+        </h1>
+        <p style="font-size: 1.2rem; opacity: 0.9">
+          Find the perfect accommodation for your next adventure
+        </p>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <!-- Filters Sidebar -->
+          <div class="col-lg-3">
+            <div class="filter-card">
+              <h5><i class="fas fa-filter me-2"></i> Filters</h5>
+
+              <div class="filter-group">
+                <label
+                  ><i class="fas fa-map-marker-alt me-2"></i>Location</label
+                >
+                <select
+                  class="form-select"
+                  id="filterLocation"
+                  onchange="applyFilters()"
+                >
+                  <option value="">All Locations</option>
+                  <option value="Astana">Astana</option>
+                  <option value="Almaty">Almaty</option>
+                  <option value="Aktau">Aktau</option>
+                  <option value="Shymkent">Shymkent</option>
+                </select>
+              </div>
+
+              <div class="filter-group">
+                <label
+                  ><i class="fas fa-money-bill-wave me-2"></i>Max Price
+                  (₸)</label
+                >
+                <input
+                  type="number"
+                  class="form-control"
+                  id="filterPrice"
+                  placeholder="e.g., 15000"
+                  onchange="applyFilters()"
+                />
+              </div>
+
+              <div class="filter-group">
+                <label><i class="fas fa-star me-2"></i>Min Rating</label>
+                <select
+                  class="form-select"
+                  id="filterRating"
+                  onchange="applyFilters()"
+                >
+                  <option value="">Any Rating</option>
+                  <option value="4.7">4.7+ ⭐⭐⭐⭐⭐</option>
+                  <option value="4.5">4.5+ ⭐⭐⭐⭐</option>
+                  <option value="4.0">4.0+ ⭐⭐⭐</option>
+                </select>
+              </div>
+
+              <div class="filter-group">
+                <label><i class="fas fa-sort me-2"></i>Sort By</label>
+                <select
+                  class="form-select"
+                  id="sortBy"
+                  onchange="applyFilters()"
+                >
+                  <option value="rating">Rating (High to Low)</option>
+                  <option value="price-low">Price (Low to High)</option>
+                  <option value="price-high">Price (High to Low)</option>
+                  <option value="name">Name (A-Z)</option>
+                </select>
+              </div>
+
+              <button class="btn-primary-custom w-100" onclick="clearFilters()">
+                <i class="fas fa-redo me-2"></i> Clear All
+              </button>
+            </div>
+          </div>
+
+          <!-- Hotels List -->
+          <div class="col-lg-9">
+            <div class="results-header">
+              <div class="results-count" id="resultsCount">
+                <strong>6</strong> hotels found
+              </div>
+            </div>
+
+            <div class="row g-4" id="hotelsList">
+              <!-- Hotels will be loaded by JavaScript -->
+            </div>
+
+            <!-- No Results -->
+            <div
+              id="noResults"
+              class="text-center"
+              style="display: none; padding: 4rem 0"
+            >
+              <i
+                class="fas fa-search"
+                style="font-size: 5rem; color: #cbd5e0; margin-bottom: 1.5rem"
+              ></i>
+              <h3 style="color: var(--text-dark)">No hotels found</h3>
+              <p style="color: var(--text-light); margin-bottom: 2rem">
+                Try adjusting your filters to see more results
+              </p>
+              <button class="btn-primary-custom" onclick="clearFilters()">
+                Clear Filters
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md-4">
+            <h5 class="footer-title"><i class="fas fa-gem"></i> LuxStay</h5>
+            <p>Your gateway to luxury accommodations worldwide.</p>
+            <div class="social-links">
+              <a href="https://t.me/dzhangazy"
+                ><i class="fab fa-telegram"></i
+              ></a>
+              <a href="https://www.instagram.com/dbktzhvn/"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="https://github.com/dzhangazy"
+                ><i class="fab fa-github"></i
+              ></a>
+              <a href="https://linkedin.com/in/bakytzhan-jangazy-50b337372"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <h6 class="footer-subtitle">Quick Links</h6>
+            <ul class="footer-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="browse.html">Hotels</a></li>
+              <li><a href="bookings.html">My Bookings</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h6 class="footer-subtitle">Support</h6>
+            <ul class="footer-links">
+              <li>
+                <a href="https://www.ihg.com/content/us/en/customer-care/main"
+                  >Help Center</a
+                >
+              </li>
+              <li>
+                <a href="https://www.marriott.com/about/terms-of-use.mi"
+                  >Terms of Service</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.marriott.com/about/privacy.mi?adobe_mc=MCMID%3D66712657228795457689090308981152108373%7CMCORGID%3D664516D751E565010A490D4C%2540AdobeOrg%7CTS%3D1762853635"
+                  >Privacy Policy</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h6 class="footer-subtitle">Contact Info</h6>
+            <ul class="footer-contact">
+              <li><i class="fas fa-envelope"></i> info@luxstay.com</li>
+              <li><i class="fas fa-phone"></i> +7 (123) 456-7890</li>
+              <li><i class="fas fa-map-marker-alt"></i> Astana, Kazakhstan</li>
+            </ul>
+          </div>
+        </div>
+        <hr class="footer-divider" />
+        <div class="footer-bottom">
+          <p>&copy; 2024 LuxStay. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="data.js"></script>
+    <script src="storage.js"></script>
+    <script src="theme.js"></script>
+    <script src="main.js"></script>
+    <script src="browse.js"></script>
+  </body>
+</html>

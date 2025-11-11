@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Favorites - LuxStay</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .page-hero {
+        background: var(--primary-gradient);
+        padding: 8rem 0 4rem;
+        color: white;
+        text-align: center;
+      }
+
+      .favorites-container {
+        min-height: calc(100vh - 500px);
+        padding: 3rem 0;
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 5rem 2rem;
+      }
+
+      .empty-state i {
+        font-size: 5rem;
+        color: #cbd5e0;
+        margin-bottom: 1.5rem;
+        opacity: 0.5;
+      }
+
+      .empty-state h3 {
+        color: var(--text-dark);
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      .empty-state p {
+        color: var(--text-light);
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <i class="fas fa-gem"></i> LuxStay
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto align-items-center">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="browse.html">Hotels</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="bookings.html">My Bookings</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="favorites.html">
+                <i class="fas fa-heart"></i> Favorites
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link position-relative" href="cart.html">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="cartCount">0</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <button class="theme-btn" onclick="toggleTheme()">
+                <i class="fas fa-moon" id="themeIcon"></i>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <div class="page-hero">
+      <div class="container">
+        <h1 style="font-size: 3rem; font-weight: 700; margin-bottom: 1rem">
+          <i class="fas fa-heart me-3"></i>My Favorite Hotels
+        </h1>
+        <p style="font-size: 1.2rem; opacity: 0.9">
+          Your collection of dream destinations
+        </p>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="favorites-container">
+      <div class="container">
+        <div class="row g-4" id="favoritesList">
+          <!-- Favorites will be loaded here -->
+        </div>
+
+        <div id="emptyFavorites" class="empty-state" style="display: none">
+          <i class="fas fa-heart-broken"></i>
+          <h3>No favorites yet</h3>
+          <p>
+            Start adding hotels to your favorites by clicking the heart icon!
+          </p>
+          <a href="browse.html" class="btn-primary-custom">
+            <i class="fas fa-hotel me-2"></i> Browse Hotels
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md-4">
+            <h5 class="footer-title"><i class="fas fa-gem"></i> LuxStay</h5>
+            <p>
+              Your gateway to luxury accommodations worldwide. Experience the
+              finest hotels at the best prices.
+            </p>
+            <div class="social-links">
+              <a href="https://t.me/dzhangazy"
+                ><i class="fab fa-telegram"></i
+              ></a>
+              <a href="https://www.instagram.com/dbktzhvn/"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="https://github.com/dzhangazy"
+                ><i class="fab fa-github"></i
+              ></a>
+              <a href="https://linkedin.com/in/bakytzhan-jangazy-50b337372"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <h6 class="footer-subtitle">Quick Links</h6>
+            <ul class="footer-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="browse.html">Hotels</a></li>
+              <li><a href="bookings.html">My Bookings</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h6 class="footer-subtitle">Support</h6>
+            <ul class="footer-links">
+              <li>
+                <a href="https://www.ihg.com/content/us/en/customer-care/main"
+                  >Help Center</a
+                >
+              </li>
+              <li>
+                <a href="https://www.marriott.com/about/terms-of-use.mi"
+                  >Terms of Service</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.marriott.com/about/privacy.mi?adobe_mc=MCMID%3D66712657228795457689090308981152108373%7CMCORGID%3D664516D751E565010A490D4C%2540AdobeOrg%7CTS%3D1762853635"
+                  >Privacy Policy</a
+                >
+              </li>
+              <li>
+                <a href="https://cityloungehotel.com/en/cancellation-policy"
+                  >Cancellation Policy</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h6 class="footer-subtitle">Contact Info</h6>
+            <ul class="footer-contact">
+              <li><i class="fas fa-envelope"></i> info@luxstay.com</li>
+              <li><i class="fas fa-phone"></i> +7 (123) 456-7890</li>
+              <li><i class="fas fa-map-marker-alt"></i> Astana, Kazakhstan</li>
+            </ul>
+          </div>
+        </div>
+        <hr class="footer-divider" />
+        <div class="footer-bottom">
+          <p>
+            &copy; 2024 LuxStay. All rights reserved. | Final Project - Astana
+            IT University
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="data.js"></script>
+    <script src="storage.js"></script>
+    <script src="theme.js"></script>
+    <script src="main.js"></script>
+    <script>
+      // Load favorites on page load
+      document.addEventListener("DOMContentLoaded", function () {
+        loadFavorites();
+      });
+
+      function loadFavorites() {
+        const favoriteHotels = getFavoriteHotels();
+        const container = document.getElementById("favoritesList");
+        const emptyState = document.getElementById("emptyFavorites");
+
+        if (favoriteHotels.length === 0) {
+          container.style.display = "none";
+          emptyState.style.display = "block";
+          return;
+        }
+
+        container.style.display = "flex";
+        emptyState.style.display = "none";
+
+        container.innerHTML = favoriteHotels
+          .map((hotel) => generateHotelCard(hotel))
+          .join("");
+      }
+    </script>
+  </body>
+</html>
